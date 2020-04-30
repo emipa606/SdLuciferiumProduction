@@ -1,9 +1,7 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Patch>
-
- <!--================================ patches for vanilla ======================================-->
-
- <!--=============
+  <!--================================ patches for vanilla ======================================-->
+  <!--=============
 	<Operation Class="PatchOperationAdd">
 		<xpath>*/DesignationCategoryDef[defName = "Orders"]/specialDesignatorClasses</xpath>
 		<value>
@@ -12,14 +10,12 @@
 	</Operation>
 	
 	==============-->
-	
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/RecipeDef[defName = "ButcherCorpseMechanoid"]</xpath>
-		<value>
-			<products>
-				<sd_luciprod_mechanite_oil>1</sd_luciprod_mechanite_oil>
-			</products>
-		</value>
-	</Operation>
-
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/RecipeDef[defName = "ButcherCorpseMechanoid"]</xpath>
+    <value>
+      <products>
+        <sd_luciprod_mechanite_oil>1</sd_luciprod_mechanite_oil>
+      </products>
+    </value>
+  </Operation>
 </Patch>

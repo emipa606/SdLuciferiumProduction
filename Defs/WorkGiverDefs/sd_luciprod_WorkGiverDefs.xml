@@ -1,6 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-
   <WorkGiverDef>
     <defName>sd_luciprod_takelucioutofdistillery</defName>
     <label>take luciferium out of distillery</label>
@@ -13,7 +12,6 @@
       <li>Manipulation</li>
     </requiredCapacities>
   </WorkGiverDef>
-  
   <WorkGiverDef>
     <defName>sd_luciprod_filldistillery</defName>
     <label>fill distillery</label>
@@ -26,7 +24,6 @@
       <li>Manipulation</li>
     </requiredCapacities>
   </WorkGiverDef>
-  
   <WorkGiverDef>
     <defName>sd_luciprod_dobillsmechpod</defName>
     <label>extract mechanite oil</label>
@@ -43,7 +40,6 @@
     </requiredCapacities>
     <prioritizeSustains>true</prioritizeSustains>
   </WorkGiverDef>
-  
   <WorkGiverDef>
     <defName>sd_luciprod_DoBillsMedicalMechanoidOperation</defName>
     <label>operate on mechanoids</label>
@@ -59,5 +55,4 @@
     </requiredCapacities>
     <prioritizeSustains>true</prioritizeSustains>
   </WorkGiverDef>
-
 </Defs>

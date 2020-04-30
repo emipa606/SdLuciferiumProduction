@@ -1,17 +1,19 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
   <name>[sd] Luciferium Production (Continued)</name>
-    <packageId>Mlie.SdLuciferiumProduction</packageId>
-	<author>Mlie</author>
-	<url>https://github.com/emipa606/SdLuciferiumProduction</url>
-	<supportedVersions>
-		<li>1.0</li>
-		<li>1.1</li>
-	</supportedVersions>
-	<modDependencies />
-	<loadAfter />
-	<description>Update of sulusdacors mod for RimWorld 1.1
+  <packageId>Mlie.SdLuciferiumProduction</packageId>
+  <author>Mlie</author>
+  <url>https://github.com/emipa606/SdLuciferiumProduction</url>
+  <supportedVersions>
+    <li>1.0</li>
+    <li>1.1</li>
+  </supportedVersions>
+  <modDependencies />
+  <loadAfter />
+  <description>Update of sulusdacors mod for RimWorld 1.1
 https://steamcommunity.com/sharedfiles/filedetails/?id=769335785
+
+[img]https://i.imgur.com/GYswkZ7.png[/img]
 
 Support-chat:
 https://discord.gg/SuhwVpM
