@@ -1,21 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
   <sd_luciprod_takelucioutofdistillery.label>take luciferium out of distillery</sd_luciprod_takelucioutofdistillery.label>
   <sd_luciprod_takelucioutofdistillery.verb>take luciferium</sd_luciprod_takelucioutofdistillery.verb>
   <sd_luciprod_takelucioutofdistillery.gerund>taking luciferium from</sd_luciprod_takelucioutofdistillery.gerund>
-
   <sd_luciprod_filldistillery.label>fill distillery</sd_luciprod_filldistillery.label>
   <sd_luciprod_filldistillery.verb>fill</sd_luciprod_filldistillery.verb>
   <sd_luciprod_filldistillery.gerund>filling</sd_luciprod_filldistillery.gerund>
-
   <sd_luciprod_dobillsmechpod.label>extract mechanite oil</sd_luciprod_dobillsmechpod.label>
   <sd_luciprod_dobillsmechpod.verb>extract mechanite oil</sd_luciprod_dobillsmechpod.verb>
   <sd_luciprod_dobillsmechpod.gerund>extract mechanite oil at</sd_luciprod_dobillsmechpod.gerund>
-
   <sd_luciprod_DoBillsMedicalMechanoidOperation.label>operate on mechanoids</sd_luciprod_DoBillsMedicalMechanoidOperation.label>
   <sd_luciprod_DoBillsMedicalMechanoidOperation.verb>modify</sd_luciprod_DoBillsMedicalMechanoidOperation.verb>
   <sd_luciprod_DoBillsMedicalMechanoidOperation.gerund>modifying</sd_luciprod_DoBillsMedicalMechanoidOperation.gerund>
-
-
 </LanguageData>

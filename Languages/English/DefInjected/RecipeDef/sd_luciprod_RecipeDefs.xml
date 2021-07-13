@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
   <!-- <RecipeDef>
 		<defName>sd_luciprod_extract_mechanites_scyther</defName>
 		<label>extract mechanite oil</label>
@@ -45,22 +44,16 @@
 	      <li>Mech_Centipede</li>
 	    </recipeUsers>
   </RecipeDef> -->
-
   <sd_luciprod_extract_oil_pod.label>extract mechanite oil</sd_luciprod_extract_oil_pod.label>
   <sd_luciprod_extract_oil_pod.description>Extract mechanite oil from the pod. yields: 1</sd_luciprod_extract_oil_pod.description>
   <sd_luciprod_extract_oil_pod.jobString>Extracting.</sd_luciprod_extract_oil_pod.jobString>
-
   <sd_luciprod_prepare_mech.label>prepare mechanoid</sd_luciprod_prepare_mech.label>
   <sd_luciprod_prepare_mech.description>Prepare a mechanoid corpse for the use in your stasis pod. needs: 1 centipde/scyther corpse. yields: 1 prepared corpse</sd_luciprod_prepare_mech.description>
   <sd_luciprod_prepare_mech.jobString>Preparing.</sd_luciprod_prepare_mech.jobString>
-
   <sd_luciprod_make_luci.label>produce luciferium</sd_luciprod_make_luci.label>
   <sd_luciprod_make_luci.description>produce 5 luciferium pills out of 10 neutroamine and 10 raw luciferium batches</sd_luciprod_make_luci.description>
   <sd_luciprod_make_luci.jobString>Producing Luciferium.</sd_luciprod_make_luci.jobString>
-
   <sd_luciprod_disassemble_prepcorpse.label>disassemble prepared mechanoid corpse</sd_luciprod_disassemble_prepcorpse.label>
   <sd_luciprod_disassemble_prepcorpse.description>Disassembles a prepared mechanoid corpse into its component parts.</sd_luciprod_disassemble_prepcorpse.description>
   <sd_luciprod_disassemble_prepcorpse.jobString>Disassembling mechanoid.</sd_luciprod_disassemble_prepcorpse.jobString>
-
-
 </LanguageData>

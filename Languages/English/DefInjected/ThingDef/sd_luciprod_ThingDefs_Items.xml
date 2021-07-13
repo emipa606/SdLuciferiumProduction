@@ -1,16 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
   <!-- luci stuff -->
-
   <sd_luciprod_rawlucibatch.label>raw luciferium batch</sd_luciprod_rawlucibatch.label>
   <sd_luciprod_rawlucibatch.description>The raw luciferium batch needs one production step to make luciferium pills at the drub lab.(recipe requires neutroamine)</sd_luciprod_rawlucibatch.description>
-
   <sd_luciprod_mechanite_oil.label>mechanite oil</sd_luciprod_mechanite_oil.label>
   <sd_luciprod_mechanite_oil.description>This is the mechanite version of human blood. It contains trace amounts of small mechanites which help powering these huge machines from within.</sd_luciprod_mechanite_oil.description>
-
   <sd_luciprod_prep_mech_corpse.label>prepared mechanoid corpse</sd_luciprod_prep_mech_corpse.label>
   <sd_luciprod_prep_mech_corpse.description>The corpse of a mechanoid prepared for the stasis pod to produce mechanites for the luciferium production. It can be disasssembled at the machining table if not needed.</sd_luciprod_prep_mech_corpse.description>
-
-
 </LanguageData>
