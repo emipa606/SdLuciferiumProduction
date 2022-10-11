@@ -1,32 +1,24 @@
-﻿using RimWorld;
+using RimWorld;
 using Verse;
 using Verse.AI;
 
-namespace sd_luciprod
+namespace sd_luciprod;
+
+public class WorkGiver_sd_luciprod_TakeLuciOutOfDistillery : WorkGiver_Scanner
 {
-    // Token: 0x02000004 RID: 4
-    public class WorkGiver_sd_luciprod_TakeLuciOutOfDistillery : WorkGiver_Scanner
+    public override ThingRequest PotentialWorkThingRequest =>
+        ThingRequest.ForDef(ThingDefOf.sd_luciprod_distillery);
+
+    public override PathEndMode PathEndMode => PathEndMode.Touch;
+
+    public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
     {
-        // Token: 0x1700000C RID: 12
-        // (get) Token: 0x06000020 RID: 32 RVA: 0x00002CA4 File Offset: 0x00001CA4
-        public override ThingRequest PotentialWorkThingRequest =>
-            ThingRequest.ForDef(ThingDefOf.sd_luciprod_distillery);
+        return t is Building_sd_luciprod_distillery { Distilled: true } && !t.IsBurning() && !t.IsForbidden(pawn) &&
+               pawn.CanReserveAndReach(t, PathEndMode.Touch, pawn.NormalMaxDanger());
+    }
 
-        // Token: 0x1700000D RID: 13
-        // (get) Token: 0x06000021 RID: 33 RVA: 0x00002CC0 File Offset: 0x00001CC0
-        public override PathEndMode PathEndMode => PathEndMode.Touch;
-
-        // Token: 0x06000022 RID: 34 RVA: 0x00002CD4 File Offset: 0x00001CD4
-        public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
-        {
-            return t is Building_sd_luciprod_distillery {Distilled: true} && !t.IsBurning() && !t.IsForbidden(pawn) &&
-                   pawn.CanReserveAndReach(t, PathEndMode.Touch, pawn.NormalMaxDanger());
-        }
-
-        // Token: 0x06000023 RID: 35 RVA: 0x00002D24 File Offset: 0x00001D24
-        public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
-        {
-            return new Job(JobDefOf.sd_luciprod_takelucioutofdistillery, t);
-        }
+    public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
+    {
+        return new Job(JobDefOf.sd_luciprod_takelucioutofdistillery, t);
     }
 }
