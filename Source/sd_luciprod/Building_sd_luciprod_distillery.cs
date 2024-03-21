@@ -268,15 +268,15 @@ public class Building_sd_luciprod_distillery : Building
         return result;
     }
 
-    public override void Draw()
+    protected override void DrawAt(Vector3 drawLoc, bool flip = false)
     {
-        base.Draw();
+        base.DrawAt(drawLoc, flip);
         if (Empty)
         {
             return;
         }
 
-        var drawPos = DrawPos;
+        var drawPos = drawLoc;
         drawPos.y += 0.05f;
         drawPos.z += 0.25f;
         GenDraw.DrawFillableBar(new GenDraw.FillableBarRequest

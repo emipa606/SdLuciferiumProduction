@@ -13,9 +13,9 @@ public class JobDriver_sd_luciprod_FillDistillery : JobDriver
     private const int Duration = 200;
 
     protected Building_sd_luciprod_distillery Barrel =>
-        (Building_sd_luciprod_distillery)job.GetTarget(TargetIndex.A).Thing;
+        (Building_sd_luciprod_distillery)job.GetTarget(BarrelInd).Thing;
 
-    protected Thing sd_luciprod_mechanite_oil => job.GetTarget(TargetIndex.B).Thing;
+    protected Thing sd_luciprod_mechanite_oil => job.GetTarget(WortInd).Thing;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
@@ -24,18 +24,18 @@ public class JobDriver_sd_luciprod_FillDistillery : JobDriver
 
     protected override IEnumerable<Toil> MakeNewToils()
     {
-        this.FailOnDespawnedNullOrForbidden(TargetIndex.A);
-        this.FailOnBurningImmobile(TargetIndex.A);
-        yield return Toils_Reserve.Reserve(TargetIndex.A);
-        var toil = Toils_Reserve.Reserve(TargetIndex.B);
+        this.FailOnDespawnedNullOrForbidden(BarrelInd);
+        this.FailOnBurningImmobile(BarrelInd);
+        yield return Toils_Reserve.Reserve(BarrelInd);
+        var toil = Toils_Reserve.Reserve(WortInd);
         yield return toil;
-        yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.ClosestTouch)
-            .FailOnDespawnedNullOrForbidden(TargetIndex.B).FailOnSomeonePhysicallyInteracting(TargetIndex.B);
-        yield return Toils_Haul.StartCarryThing(TargetIndex.B).FailOnDestroyedNullOrForbidden(TargetIndex.B);
-        yield return Toils_Haul.CheckForGetOpportunityDuplicate(toil, TargetIndex.B, TargetIndex.None);
-        yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
-        yield return Toils_General.Wait(200).FailOnDestroyedNullOrForbidden(TargetIndex.B)
-            .FailOnDestroyedNullOrForbidden(TargetIndex.A).WithProgressBarToilDelay(TargetIndex.A);
+        yield return Toils_Goto.GotoThing(WortInd, PathEndMode.ClosestTouch)
+            .FailOnDespawnedNullOrForbidden(WortInd).FailOnSomeonePhysicallyInteracting(WortInd);
+        yield return Toils_Haul.StartCarryThing(WortInd).FailOnDestroyedNullOrForbidden(WortInd);
+        yield return Toils_Haul.CheckForGetOpportunityDuplicate(toil, WortInd, TargetIndex.None);
+        yield return Toils_Goto.GotoThing(BarrelInd, PathEndMode.Touch);
+        yield return Toils_General.Wait(Duration).FailOnDestroyedNullOrForbidden(WortInd)
+            .FailOnDestroyedNullOrForbidden(BarrelInd).WithProgressBarToilDelay(BarrelInd);
         yield return new Toil
         {
             initAction = delegate { Barrel.Addoil(sd_luciprod_mechanite_oil); },

@@ -16,9 +16,9 @@ public class JobDriver_sd_luciprod_TakeLuciOutOfDistillery : JobDriver
     private const int Duration = 200;
 
     protected Building_sd_luciprod_distillery Barrel =>
-        (Building_sd_luciprod_distillery)job.GetTarget(TargetIndex.A).Thing;
+        (Building_sd_luciprod_distillery)job.GetTarget(BarrelInd).Thing;
 
-    protected Thing sd_luciprod_rawlucibatch => job.GetTarget(TargetIndex.B).Thing;
+    protected Thing sd_luciprod_rawlucibatch => job.GetTarget(sd_luciprod_rawBatchToHaulInd).Thing;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
@@ -27,12 +27,12 @@ public class JobDriver_sd_luciprod_TakeLuciOutOfDistillery : JobDriver
 
     protected override IEnumerable<Toil> MakeNewToils()
     {
-        this.FailOnDespawnedNullOrForbidden(TargetIndex.A);
-        this.FailOnBurningImmobile(TargetIndex.A);
-        yield return Toils_Reserve.Reserve(TargetIndex.A);
-        yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
-        yield return Toils_General.Wait(200).FailOnDestroyedNullOrForbidden(TargetIndex.A)
-            .FailOn(() => !Barrel.Distilled).WithProgressBarToilDelay(TargetIndex.A);
+        this.FailOnDespawnedNullOrForbidden(BarrelInd);
+        this.FailOnBurningImmobile(BarrelInd);
+        yield return Toils_Reserve.Reserve(BarrelInd);
+        yield return Toils_Goto.GotoThing(BarrelInd, PathEndMode.Touch);
+        yield return Toils_General.Wait(Duration).FailOnDestroyedNullOrForbidden(BarrelInd)
+            .FailOn(() => !Barrel.Distilled).WithProgressBarToilDelay(BarrelInd);
         yield return new Toil
         {
             initAction = delegate
@@ -43,8 +43,8 @@ public class JobDriver_sd_luciprod_TakeLuciOutOfDistillery : JobDriver
                 if (StoreUtility.TryFindBestBetterStoreCellFor(thing, pawn, Map, currentPriority, pawn.Faction,
                         out var c))
                 {
-                    job.SetTarget(TargetIndex.C, c);
-                    job.SetTarget(TargetIndex.B, thing);
+                    job.SetTarget(StorageCellInd, c);
+                    job.SetTarget(sd_luciprod_rawBatchToHaulInd, thing);
                     job.count = thing.stackCount;
                 }
                 else
@@ -54,12 +54,12 @@ public class JobDriver_sd_luciprod_TakeLuciOutOfDistillery : JobDriver
             },
             defaultCompleteMode = ToilCompleteMode.Instant
         };
-        yield return Toils_Reserve.Reserve(TargetIndex.B);
-        yield return Toils_Reserve.Reserve(TargetIndex.C);
-        yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.ClosestTouch);
-        yield return Toils_Haul.StartCarryThing(TargetIndex.B);
-        var toil = Toils_Haul.CarryHauledThingToCell(TargetIndex.C);
+        yield return Toils_Reserve.Reserve(sd_luciprod_rawBatchToHaulInd);
+        yield return Toils_Reserve.Reserve(StorageCellInd);
+        yield return Toils_Goto.GotoThing(sd_luciprod_rawBatchToHaulInd, PathEndMode.ClosestTouch);
+        yield return Toils_Haul.StartCarryThing(sd_luciprod_rawBatchToHaulInd);
+        var toil = Toils_Haul.CarryHauledThingToCell(StorageCellInd);
         yield return toil;
-        yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.C, toil, true);
+        yield return Toils_Haul.PlaceHauledThingInCell(StorageCellInd, toil, true);
     }
 }

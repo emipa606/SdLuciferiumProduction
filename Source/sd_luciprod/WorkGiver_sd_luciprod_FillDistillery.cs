@@ -25,7 +25,7 @@ public class WorkGiver_sd_luciprod_FillDistillery : WorkGiver_Scanner
     public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
     {
         bool result;
-        if (!(t is Building_sd_luciprod_distillery building_sd_luciprod_distillery) ||
+        if (t is not Building_sd_luciprod_distillery building_sd_luciprod_distillery ||
             building_sd_luciprod_distillery.Distilled ||
             building_sd_luciprod_distillery.sd_luciprod_SpaceLeftFor_oil <= 0)
         {
@@ -77,14 +77,14 @@ public class WorkGiver_sd_luciprod_FillDistillery : WorkGiver_Scanner
 
     private Thing Findmech_oil(Pawn pawn)
     {
-        bool Predicate(Thing x)
-        {
-            return !x.IsForbidden(pawn) && pawn.CanReserve(x);
-        }
-
         var validator = (Predicate<Thing>)Predicate;
         return GenClosest.ClosestThingReachable(pawn.Position, pawn.Map,
             ThingRequest.ForDef(ThingDefOf.sd_luciprod_mechanite_oil), PathEndMode.ClosestTouch,
             TraverseParms.For(pawn), 9999f, validator);
+
+        bool Predicate(Thing x)
+        {
+            return !x.IsForbidden(pawn) && pawn.CanReserve(x);
+        }
     }
 }
