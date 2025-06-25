@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: chemical distillery -->
+  <sd_luciprod_distillery.label>chemical distillery</sd_luciprod_distillery.label>
+  <!-- EN: A distillery will turn 10 units of mechanite oil into 5 raw luciferium batches. These are used to produce luciferium pills at the drug lab. -->
+  <sd_luciprod_distillery.description>A distillery will turn 10 units of mechanite oil into 5 raw luciferium batches. These are used to produce luciferium pills at the drug lab.</sd_luciprod_distillery.description>
+  <!-- EN: mechanoid stasis pod -->
+  <sd_luciprod_mechstasispod.label>mechanoid stasis pod</sd_luciprod_mechstasispod.label>
+  <!-- EN: A pod designed to keep a mechanoid running and harvest his mechanite oil. -->
+  <sd_luciprod_mechstasispod.description>A pod designed to keep a mechanoid running and harvest his mechanite oil.</sd_luciprod_mechstasispod.description>
+</LanguageData>

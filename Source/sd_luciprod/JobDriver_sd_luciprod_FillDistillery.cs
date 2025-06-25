@@ -12,14 +12,14 @@ public class JobDriver_sd_luciprod_FillDistillery : JobDriver
 
     private const int Duration = 200;
 
-    protected Building_sd_luciprod_distillery Barrel =>
+    private Building_sd_luciprod_distillery Barrel =>
         (Building_sd_luciprod_distillery)job.GetTarget(BarrelInd).Thing;
 
-    protected Thing sd_luciprod_mechanite_oil => job.GetTarget(WortInd).Thing;
+    private Thing SDLuciprodMechaniteOil => job.GetTarget(WortInd).Thing;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
-        return pawn.Reserve(Barrel, job) && pawn.Reserve(sd_luciprod_mechanite_oil, job);
+        return pawn.Reserve(Barrel, job) && pawn.Reserve(SDLuciprodMechaniteOil, job);
     }
 
     protected override IEnumerable<Toil> MakeNewToils()
@@ -38,7 +38,7 @@ public class JobDriver_sd_luciprod_FillDistillery : JobDriver
             .FailOnDestroyedNullOrForbidden(BarrelInd).WithProgressBarToilDelay(BarrelInd);
         yield return new Toil
         {
-            initAction = delegate { Barrel.Addoil(sd_luciprod_mechanite_oil); },
+            initAction = delegate { Barrel.AddOil(SDLuciprodMechaniteOil); },
             defaultCompleteMode = ToilCompleteMode.Instant
         };
     }

@@ -7,9 +7,9 @@ namespace sd_luciprod;
 
 public class WorkGiver_sd_luciprod_FillDistillery : WorkGiver_Scanner
 {
-    private static string TemperatureTrans;
+    private static string temperatureTrans;
 
-    private static string sd_luciprod_mechanite_No_oil_Trans;
+    private static string sdLuciprodMechaniteNoOilTrans;
 
     public override ThingRequest PotentialWorkThingRequest =>
         ThingRequest.ForDef(ThingDefOf.sd_luciprod_distillery);
@@ -18,8 +18,8 @@ public class WorkGiver_sd_luciprod_FillDistillery : WorkGiver_Scanner
 
     public static void Reset()
     {
-        TemperatureTrans = "sd_luciprod_txtbadtemperature".Translate().ToLower();
-        sd_luciprod_mechanite_No_oil_Trans = "sd_luciprod_txtnomechaniteoil".Translate();
+        temperatureTrans = "sd_luciprod_txtbadtemperature".Translate().ToLower();
+        sdLuciprodMechaniteNoOilTrans = "sd_luciprod_txtnomechaniteoil".Translate();
     }
 
     public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
@@ -27,7 +27,7 @@ public class WorkGiver_sd_luciprod_FillDistillery : WorkGiver_Scanner
         bool result;
         if (t is not Building_sd_luciprod_distillery building_sd_luciprod_distillery ||
             building_sd_luciprod_distillery.Distilled ||
-            building_sd_luciprod_distillery.sd_luciprod_SpaceLeftFor_oil <= 0)
+            building_sd_luciprod_distillery.SDLuciprodSpaceLeftForOil <= 0)
         {
             result = false;
         }
@@ -40,20 +40,17 @@ public class WorkGiver_sd_luciprod_FillDistillery : WorkGiver_Scanner
             if (temperature < compProperties.minSafeTemperature + 2f ||
                 temperature > compProperties.maxSafeTemperature - 2f)
             {
-                JobFailReason.Is(TemperatureTrans);
+                JobFailReason.Is(temperatureTrans);
                 result = false;
             }
-            else if (t.IsForbidden(pawn) || !pawn.CanReserveAndReach(t, PathEndMode.Touch, pawn.NormalMaxDanger()))
+            else if (t.IsForbidden(pawn) || !pawn.CanReserveAndReach(t, PathEndMode.Touch, pawn.NormalMaxDanger()) ||
+                     pawn.Map.designationManager.DesignationOn(t, DesignationDefOf.Deconstruct) != null)
             {
                 result = false;
             }
-            else if (pawn.Map.designationManager.DesignationOn(t, DesignationDefOf.Deconstruct) != null)
+            else if (findMechOil(pawn) == null)
             {
-                result = false;
-            }
-            else if (Findmech_oil(pawn) == null)
-            {
-                JobFailReason.Is(sd_luciprod_mechanite_No_oil_Trans);
+                JobFailReason.Is(sdLuciprodMechaniteNoOilTrans);
                 result = false;
             }
             else
@@ -67,22 +64,22 @@ public class WorkGiver_sd_luciprod_FillDistillery : WorkGiver_Scanner
 
     public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
     {
-        var building_sd_luciprod_distillery = (Building_sd_luciprod_distillery)t;
-        var t2 = Findmech_oil(pawn);
+        var buildingSDLuciprodDistillery = (Building_sd_luciprod_distillery)t;
+        var t2 = findMechOil(pawn);
         return new Job(JobDefOf.sd_luciprod_filldistillery, t, t2)
         {
-            count = building_sd_luciprod_distillery.sd_luciprod_SpaceLeftFor_oil
+            count = buildingSDLuciprodDistillery.SDLuciprodSpaceLeftForOil
         };
     }
 
-    private Thing Findmech_oil(Pawn pawn)
+    private static Thing findMechOil(Pawn pawn)
     {
-        var validator = (Predicate<Thing>)Predicate;
+        var validator = (Predicate<Thing>)predicate;
         return GenClosest.ClosestThingReachable(pawn.Position, pawn.Map,
             ThingRequest.ForDef(ThingDefOf.sd_luciprod_mechanite_oil), PathEndMode.ClosestTouch,
             TraverseParms.For(pawn), 9999f, validator);
 
-        bool Predicate(Thing x)
+        bool predicate(Thing x)
         {
             return !x.IsForbidden(pawn) && pawn.CanReserve(x);
         }

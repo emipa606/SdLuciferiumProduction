@@ -1,0 +1,6 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Release" />
+  </Configurations>
+  <Project Path="sd_luciprod/sd_luciprod.csproj" />
+</Solution>

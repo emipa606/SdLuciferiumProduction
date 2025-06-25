@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: extract mechanite oil -->
+  <sd_luciprod_dobillsmechpod.label>extract mechanite oil</sd_luciprod_dobillsmechpod.label>
+  <!-- EN: extract mechanite oil at -->
+  <sd_luciprod_dobillsmechpod.gerund>extract mechanite oil at</sd_luciprod_dobillsmechpod.gerund>
+  <!-- EN: extract mechanite oil -->
+  <sd_luciprod_dobillsmechpod.verb>extract mechanite oil</sd_luciprod_dobillsmechpod.verb>
+  <!-- EN: operate on mechanoids -->
+  <sd_luciprod_DoBillsMedicalMechanoidOperation.label>operate on mechanoids</sd_luciprod_DoBillsMedicalMechanoidOperation.label>
+  <!-- EN: modifying -->
+  <sd_luciprod_DoBillsMedicalMechanoidOperation.gerund>modifying</sd_luciprod_DoBillsMedicalMechanoidOperation.gerund>
+  <!-- EN: modify -->
+  <sd_luciprod_DoBillsMedicalMechanoidOperation.verb>modify</sd_luciprod_DoBillsMedicalMechanoidOperation.verb>
+  <!-- EN: fill distillery -->
+  <sd_luciprod_filldistillery.label>fill distillery</sd_luciprod_filldistillery.label>
+  <!-- EN: filling -->
+  <sd_luciprod_filldistillery.gerund>filling</sd_luciprod_filldistillery.gerund>
+  <!-- EN: fill -->
+  <sd_luciprod_filldistillery.verb>fill</sd_luciprod_filldistillery.verb>
+  <!-- EN: take luciferium out of distillery -->
+  <sd_luciprod_takelucioutofdistillery.label>take luciferium out of distillery</sd_luciprod_takelucioutofdistillery.label>
+  <!-- EN: taking luciferium from -->
+  <sd_luciprod_takelucioutofdistillery.gerund>taking luciferium from</sd_luciprod_takelucioutofdistillery.gerund>
+  <!-- EN: take luciferium -->
+  <sd_luciprod_takelucioutofdistillery.verb>take luciferium</sd_luciprod_takelucioutofdistillery.verb>
+</LanguageData>

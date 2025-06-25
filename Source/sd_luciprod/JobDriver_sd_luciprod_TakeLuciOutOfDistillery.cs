@@ -9,16 +9,14 @@ public class JobDriver_sd_luciprod_TakeLuciOutOfDistillery : JobDriver
 {
     private const TargetIndex BarrelInd = TargetIndex.A;
 
-    private const TargetIndex sd_luciprod_rawBatchToHaulInd = TargetIndex.B;
+    private const TargetIndex SDLuciprodRawBatchToHaulInd = TargetIndex.B;
 
     private const TargetIndex StorageCellInd = TargetIndex.C;
 
     private const int Duration = 200;
 
-    protected Building_sd_luciprod_distillery Barrel =>
+    private Building_sd_luciprod_distillery Barrel =>
         (Building_sd_luciprod_distillery)job.GetTarget(BarrelInd).Thing;
-
-    protected Thing sd_luciprod_rawlucibatch => job.GetTarget(sd_luciprod_rawBatchToHaulInd).Thing;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
@@ -44,7 +42,7 @@ public class JobDriver_sd_luciprod_TakeLuciOutOfDistillery : JobDriver
                         out var c))
                 {
                     job.SetTarget(StorageCellInd, c);
-                    job.SetTarget(sd_luciprod_rawBatchToHaulInd, thing);
+                    job.SetTarget(SDLuciprodRawBatchToHaulInd, thing);
                     job.count = thing.stackCount;
                 }
                 else
@@ -54,10 +52,10 @@ public class JobDriver_sd_luciprod_TakeLuciOutOfDistillery : JobDriver
             },
             defaultCompleteMode = ToilCompleteMode.Instant
         };
-        yield return Toils_Reserve.Reserve(sd_luciprod_rawBatchToHaulInd);
+        yield return Toils_Reserve.Reserve(SDLuciprodRawBatchToHaulInd);
         yield return Toils_Reserve.Reserve(StorageCellInd);
-        yield return Toils_Goto.GotoThing(sd_luciprod_rawBatchToHaulInd, PathEndMode.ClosestTouch);
-        yield return Toils_Haul.StartCarryThing(sd_luciprod_rawBatchToHaulInd);
+        yield return Toils_Goto.GotoThing(SDLuciprodRawBatchToHaulInd, PathEndMode.ClosestTouch);
+        yield return Toils_Haul.StartCarryThing(SDLuciprodRawBatchToHaulInd);
         var toil = Toils_Haul.CarryHauledThingToCell(StorageCellInd);
         yield return toil;
         yield return Toils_Haul.PlaceHauledThingInCell(StorageCellInd, toil, true);

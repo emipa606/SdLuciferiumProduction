@@ -9,28 +9,22 @@ namespace sd_luciprod;
 [StaticConstructorOnStartup]
 public class Building_sd_luciprod_distillery : Building
 {
-    private const int MaxCapacity = 10;
+    private static readonly Vector2 barSize = new(0.55f, 0.1f);
 
-    private const int BaseFermentationDuration = 600000;
+    private static readonly Color barZeroProgressColor = new(0.4f, 0.27f, 0.22f);
 
-    private const float MinIdealTemperature = 7f;
+    private static readonly Color barFermentedColor = new(0.9f, 0.85f, 0.2f);
 
-    private static readonly Vector2 BarSize = new Vector2(0.55f, 0.1f);
-
-    private static readonly Color BarZeroProgressColor = new Color(0.4f, 0.27f, 0.22f);
-
-    private static readonly Color BarFermentedColor = new Color(0.9f, 0.85f, 0.2f);
-
-    private static readonly Material BarUnfilledMat =
+    private static readonly Material barUnfilledMat =
         SolidColorMaterials.SimpleSolidColorMaterial(new Color(0.3f, 0.3f, 0.3f));
 
     private Material barFilledCachedMat;
 
     private float progressInt;
 
-    private int sd_luciprod_oilcount;
+    private int sdLuciprodOilcount;
 
-    public float Progress
+    private float Progress
     {
         get => progressInt;
         set
@@ -52,7 +46,7 @@ public class Building_sd_luciprod_distillery : Building
             if (barFilledCachedMat == null)
             {
                 barFilledCachedMat =
-                    SolidColorMaterials.SimpleSolidColorMaterial(Color.Lerp(BarZeroProgressColor, BarFermentedColor,
+                    SolidColorMaterials.SimpleSolidColorMaterial(Color.Lerp(barZeroProgressColor, barFermentedColor,
                         Progress));
             }
 
@@ -79,7 +73,7 @@ public class Building_sd_luciprod_distillery : Building
         }
     }
 
-    public int sd_luciprod_SpaceLeftFor_oil
+    public int SDLuciprodSpaceLeftForOil
     {
         get
         {
@@ -90,14 +84,14 @@ public class Building_sd_luciprod_distillery : Building
             }
             else
             {
-                result = checked(10 - sd_luciprod_oilcount);
+                result = checked(10 - sdLuciprodOilcount);
             }
 
             return result;
         }
     }
 
-    private bool Empty => sd_luciprod_oilcount <= 0;
+    private bool Empty => sdLuciprodOilcount <= 0;
 
     public bool Distilled => !Empty && Progress >= 1f;
 
@@ -133,7 +127,7 @@ public class Building_sd_luciprod_distillery : Building
     public override void ExposeData()
     {
         base.ExposeData();
-        Scribe_Values.Look(ref sd_luciprod_oilcount, "oilcount");
+        Scribe_Values.Look(ref sdLuciprodOilcount, "oilcount");
         Scribe_Values.Look(ref progressInt, "progress");
     }
 
@@ -146,7 +140,7 @@ public class Building_sd_luciprod_distillery : Building
         }
     }
 
-    public void Addoil(int count)
+    private void addOil(int count)
     {
         checked
         {
@@ -157,14 +151,14 @@ public class Building_sd_luciprod_distillery : Building
             }
             else
             {
-                var num = Mathf.Min(count, 10 - sd_luciprod_oilcount);
+                var num = Mathf.Min(count, 10 - sdLuciprodOilcount);
                 if (num <= 0)
                 {
                     return;
                 }
 
-                Progress = GenMath.WeightedAverage(0f, num, Progress, sd_luciprod_oilcount);
-                sd_luciprod_oilcount += num;
+                Progress = GenMath.WeightedAverage(0f, num, Progress, sdLuciprodOilcount);
+                sdLuciprodOilcount += num;
                 GetComp<CompTemperatureRuinable>().Reset();
             }
         }
@@ -174,17 +168,17 @@ public class Building_sd_luciprod_distillery : Building
     {
         if (signal == "RuinedByTemperature")
         {
-            Reset();
+            reset();
         }
     }
 
-    private void Reset()
+    private void reset()
     {
-        sd_luciprod_oilcount = 0;
+        sdLuciprodOilcount = 0;
         Progress = 0f;
     }
 
-    public void Addoil(Thing sd_luciprod_mechanite_oil)
+    public void AddOil(Thing sd_luciprod_mechanite_oil)
     {
         var comp = GetComp<CompTemperatureRuinable>();
         if (comp.Ruined)
@@ -192,7 +186,7 @@ public class Building_sd_luciprod_distillery : Building
             comp.Reset();
         }
 
-        Addoil(sd_luciprod_mechanite_oil.stackCount);
+        addOil(sd_luciprod_mechanite_oil.stackCount);
         sd_luciprod_mechanite_oil.Destroy();
     }
 
@@ -211,12 +205,12 @@ public class Building_sd_luciprod_distillery : Building
             if (Distilled)
             {
                 stringBuilder.AppendLine(string.Concat("sd_luciprod_txtcontainsrawluci".Translate(), ": ",
-                    sd_luciprod_oilcount, "/10"));
+                    sdLuciprodOilcount, "/10"));
             }
             else
             {
                 stringBuilder.AppendLine(string.Concat("sd_luciprod_txtcontainsoil".Translate(), ": ",
-                    sd_luciprod_oilcount, "/10"));
+                    sdLuciprodOilcount, "/10"));
             }
         }
 
@@ -260,8 +254,8 @@ public class Building_sd_luciprod_distillery : Building
         else
         {
             var thing = ThingMaker.MakeThing(ThingDefOf.sd_luciprod_rawlucibatch);
-            thing.stackCount = sd_luciprod_oilcount / 2;
-            Reset();
+            thing.stackCount = sdLuciprodOilcount / 2;
+            reset();
             result = thing;
         }
 
@@ -282,10 +276,10 @@ public class Building_sd_luciprod_distillery : Building
         GenDraw.DrawFillableBar(new GenDraw.FillableBarRequest
         {
             center = drawPos,
-            size = BarSize,
-            fillPercent = sd_luciprod_oilcount / 10f,
+            size = barSize,
+            fillPercent = sdLuciprodOilcount / 10f,
             filledMat = BarFilledMat,
-            unfilledMat = BarUnfilledMat,
+            unfilledMat = barUnfilledMat,
             margin = 0.1f,
             rotation = Rot4.North
         });
@@ -303,10 +297,10 @@ public class Building_sd_luciprod_distillery : Building
             yield break;
         }
 
-        var command_Action = new Command_Action
+        var commandAction = new Command_Action
         {
             defaultLabel = "Debug: Set progress to 1", action = delegate { Progress = 1f; }
         };
-        yield return command_Action;
+        yield return commandAction;
     }
 }

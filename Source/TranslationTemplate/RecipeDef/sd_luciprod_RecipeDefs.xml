@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: disassemble prepared mechanoid corpse -->
+  <sd_luciprod_disassemble_prepcorpse.label>disassemble prepared mechanoid corpse</sd_luciprod_disassemble_prepcorpse.label>
+  <!-- EN: Disassembles a prepared mechanoid corpse into its component parts. -->
+  <sd_luciprod_disassemble_prepcorpse.description>Disassembles a prepared mechanoid corpse into its component parts.</sd_luciprod_disassemble_prepcorpse.description>
+  <!-- EN: Disassembling mechanoid. -->
+  <sd_luciprod_disassemble_prepcorpse.jobString>Disassembling mechanoid.</sd_luciprod_disassemble_prepcorpse.jobString>
+  <!-- EN: extract mechanite oil -->
+  <sd_luciprod_extract_oil_pod.label>extract mechanite oil</sd_luciprod_extract_oil_pod.label>
+  <!-- EN: Extract mechanite oil from the pod. yields: 1 -->
+  <sd_luciprod_extract_oil_pod.description>Extract mechanite oil from the pod. yields: 1</sd_luciprod_extract_oil_pod.description>
+  <!-- EN: Extracting. -->
+  <sd_luciprod_extract_oil_pod.jobString>Extracting.</sd_luciprod_extract_oil_pod.jobString>
+  <!-- EN: produce luciferium -->
+  <sd_luciprod_make_luci.label>produce luciferium</sd_luciprod_make_luci.label>
+  <!-- EN: produce 5 luciferium pills out of 10 neutroamine and 10 raw luciferium batches -->
+  <sd_luciprod_make_luci.description>produce 5 luciferium pills out of 10 neutroamine and 10 raw luciferium batches</sd_luciprod_make_luci.description>
+  <!-- EN: Producing Luciferium. -->
+  <sd_luciprod_make_luci.jobString>Producing Luciferium.</sd_luciprod_make_luci.jobString>
+  <!-- EN: prepare mechanoid -->
+  <sd_luciprod_prepare_mech.label>prepare mechanoid</sd_luciprod_prepare_mech.label>
+  <!-- EN: Prepare a mechanoid corpse for the use in your stasis pod. needs: 1 centipde/scyther corpse. yields: 1 prepared corpse -->
+  <sd_luciprod_prepare_mech.description>Prepare a mechanoid corpse for the use in your stasis pod. needs: 1 centipde/scyther corpse. yields: 1 prepared corpse</sd_luciprod_prepare_mech.description>
+  <!-- EN: Preparing. -->
+  <sd_luciprod_prepare_mech.jobString>Preparing.</sd_luciprod_prepare_mech.jobString>
+</LanguageData>
